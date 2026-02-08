@@ -23,7 +23,7 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - uses: unitvectory-labs/kuberollouttrigger-action@v1
+      - uses: unitvectory-labs/kuberollouttrigger-action@v0.1.0
         with:
           audience: ${{ vars.KRT_AUDIENCE }}
           url: ${{ vars.KRT_URL }}
