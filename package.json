@@ -1,0 +1,19 @@
+{
+  "name": "kuberollouttrigger-action",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GitHub Action for triggering rollout webhook with OIDC",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/index.js -o dist",
+    "bundle": "npm run build",
+    "lint": "node --check src/index.js"
+  },
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/http-client": "^4.0.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.4"
+  }
+}

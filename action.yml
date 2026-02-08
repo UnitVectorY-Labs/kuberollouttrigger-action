@@ -1,0 +1,25 @@
+name: "KubeRolloutTrigger"
+description: "Fetch a GitHub OIDC token and POST {image, tag} to a rollout trigger endpoint"
+author: "unitvectory-labs"
+
+inputs:
+  audience:
+    description: "OIDC audience"
+    required: true
+  url:
+    description: "Webhook URL to POST to"
+    required: true
+  image:
+    description: "Image name to deploy"
+    required: true
+  tag:
+    description: "Image tag to deploy"
+    required: true
+  timeout-seconds:
+    description: "HTTP timeout in seconds"
+    required: false
+    default: "10"
+
+runs:
+  using: "node20"
+  main: "dist/index.js"
