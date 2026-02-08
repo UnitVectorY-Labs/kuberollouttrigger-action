@@ -1,7 +1,7 @@
-const core = require("@actions/core");
-
 async function run() {
+  let core;
   try {
+    core = await import("@actions/core");
     const { HttpClient } = await import("@actions/http-client");
 
     const audience = core.getInput("audience", { required: true });
@@ -43,7 +43,13 @@ async function run() {
       throw new Error(`Request failed with status ${statusCode}`);
     }
   } catch (error) {
-    core.setFailed(error instanceof Error ? error.message : String(error));
+    const message = error instanceof Error ? error.message : String(error);
+    if (core && typeof core.setFailed === "function") {
+      core.setFailed(message);
+      return;
+    }
+    console.error(message);
+    process.exitCode = 1;
   }
 }
 
