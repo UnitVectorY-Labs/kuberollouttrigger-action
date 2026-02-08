@@ -16,7 +16,7 @@ with an `{image, tag}` payload to a rollout trigger endpoint.
 ```yaml
 jobs:
   trigger-rollout:
-    runs-on: arc-runner-set
+    runs-on: ubuntu-latest
     permissions:
       id-token: write
       contents: read
@@ -28,12 +28,3 @@ jobs:
           image: ${{ needs.build-and-push.outputs.image }}
           tag: ${{ needs.build-and-push.outputs.tag }}
 ```
-
-## Development
-
-```bash
-npm install
-npm run build
-```
-
-Commit `dist/index.js` as part of releases.
