@@ -9,10 +9,12 @@ Reusable GitHub Action that fetches a GitHub OIDC token and sends a POST request
 - `audience` (required): OIDC audience to request a token for.
 - `url` (required): Rollout trigger endpoint URL.
 - `image` (required): Image name.
-- `tag` (required): Image tag.
+- `tags` (required): Image tags (comma-separated, e.g., `dev` or `v1.0.0,v1.0,v1,latest`).
 - `timeout-seconds` (optional, default `10`): HTTP socket timeout.
 
 ## Usage
+
+### Single Tag
 
 ```yaml
 jobs:
@@ -27,5 +29,23 @@ jobs:
           audience: ${{ vars.KRT_AUDIENCE }}
           url: ${{ vars.KRT_URL }}
           image: ${{ needs.build-and-push.outputs.image }}
-          tag: ${{ needs.build-and-push.outputs.tag }}
+          tags: ${{ needs.build-and-push.outputs.tag }}
+```
+
+### Multiple Tags
+
+```yaml
+jobs:
+  trigger-rollout:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: unitvectory-labs/kuberollouttrigger-action@v0.1.0
+        with:
+          audience: ${{ vars.KRT_AUDIENCE }}
+          url: ${{ vars.KRT_URL }}
+          image: ghcr.io/myorg/myapp
+          tags: v1.0.0,v1.0,v1,latest
 ```
