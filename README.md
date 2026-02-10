@@ -2,7 +2,7 @@
 
 # kuberollouttrigger-action
 
-Reusable GitHub Action that fetches a GitHub OIDC token and sends a POST request with payload referencing the image and tag for the purposes of triggering [kuberollouttrigger](https://github.com/UnitVectorY-Labs/kuberollouttrigger) to trigger an update of containers in a development environment for the purposes of continuous deployment.
+Reusable GitHub Action that fetches a GitHub OIDC token and sends a POST request with payload referencing the image and tags for the purposes of triggering [kuberollouttrigger](https://github.com/UnitVectorY-Labs/kuberollouttrigger) to trigger an update of containers in a development environment for the purposes of continuous deployment.
 
 ## Inputs
 
