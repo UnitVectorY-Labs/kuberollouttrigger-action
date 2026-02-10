@@ -11,6 +11,7 @@ Reusable GitHub Action that fetches a GitHub OIDC token and sends a POST request
 - `image` (required): Image name.
 - `tags` (required): Image tags (comma-separated, e.g., `dev` or `v1.0.0,v1.0,v1,latest`).
 - `timeout-seconds` (optional, default `10`): HTTP socket timeout.
+- `expand-versions` (optional, default `false`): Automatically expand semantic version tags (e.g., `v1.2.3` expands to `v1`, `v1.2`, `v1.2.3`).
 
 ## Usage
 
@@ -49,3 +50,26 @@ jobs:
           image: ghcr.io/myorg/myapp
           tags: v1.0.0,v1.0,v1,latest
 ```
+
+### Automatic Version Expansion
+
+The `expand-versions` feature automatically expands semantic version tags (e.g., `v1.2.3`) into multiple tags (`v1`, `v1.2`, `v1.2.3`). This is useful when publishing releases to trigger rollouts for all version tags simultaneously.
+
+```yaml
+jobs:
+  trigger-rollout:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: unitvectory-labs/kuberollouttrigger-action@v0.1.0
+        with:
+          audience: ${{ vars.KRT_AUDIENCE }}
+          url: ${{ vars.KRT_URL }}
+          image: ghcr.io/myorg/myapp
+          tags: v1.2.3,latest
+          expand-versions: true
+```
+
+In this example, `v1.2.3,latest` will be expanded to `v1`, `v1.2`, `v1.2.3`, `latest` before sending to the rollout trigger.
