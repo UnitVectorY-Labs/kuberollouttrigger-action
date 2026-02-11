@@ -1,5 +1,5 @@
 name: "KubeRolloutTrigger"
-description: "Fetch a GitHub OIDC token and POST {image, tag} to a rollout trigger endpoint"
+description: "Fetch a GitHub OIDC token and POST {image, tags} to a rollout trigger endpoint"
 author: "unitvectory-labs"
 
 inputs:
@@ -12,13 +12,17 @@ inputs:
   image:
     description: "Image name to deploy"
     required: true
-  tag:
-    description: "Image tag to deploy"
+  tags:
+    description: "Image tags to deploy (comma-separated, e.g., 'dev' or 'v1.0.0,v1.0,v1,latest')"
     required: true
   timeout-seconds:
     description: "HTTP timeout in seconds"
     required: false
     default: "10"
+  expand-versions:
+    description: "Expand semantic version tags (e.g., v1.2.3 → v1, v1.2, v1.2.3)"
+    required: false
+    default: "false"
 
 runs:
   using: "node24"
