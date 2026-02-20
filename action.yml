@@ -1,29 +1,34 @@
-name: "KubeRolloutTrigger"
-description: "Fetch a GitHub OIDC token and POST {image, tags} to a rollout trigger endpoint"
-author: "unitvectory-labs"
+name: 'KubeRolloutTrigger'
+description:
+  'Fetch a GitHub OIDC token and POST {image, tags} to a rollout trigger
+  endpoint'
+author: 'unitvectory-labs'
 
 inputs:
   audience:
-    description: "OIDC audience"
+    description: 'OIDC audience'
     required: true
   url:
-    description: "Webhook URL to POST to"
+    description: 'Webhook URL to POST to'
     required: true
   image:
-    description: "Image name to deploy"
+    description: 'Image name to deploy'
     required: true
   tags:
-    description: "Image tags to deploy (comma-separated, e.g., 'dev' or 'v1.0.0,v1.0,v1,latest')"
+    description:
+      "Image tags to deploy (comma-separated, e.g., 'dev' or
+      'v1.0.0,v1.0,v1,latest')"
     required: true
   timeout-seconds:
-    description: "HTTP timeout in seconds"
+    description: 'HTTP timeout in seconds'
     required: false
-    default: "10"
+    default: '10'
   expand-versions:
-    description: "Expand semantic version tags (e.g., v1.2.3 → v1, v1.2, v1.2.3)"
+    description:
+      'Expand semantic version tags (e.g., v1.2.3 → v1, v1.2, v1.2.3)'
     required: false
-    default: "false"
+    default: 'false'
 
 runs:
-  using: "node24"
-  main: "dist/index.js"
+  using: 'node24'
+  main: 'dist/index.js'
