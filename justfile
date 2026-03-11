@@ -15,6 +15,14 @@ build-dist:
 # Refresh dist/ from a clean dependency install.
 update-dist: install build-dist
 
-# Quick local validation for source syntax.
+# Run the test suite.
+test:
+  npm run test
+
+# Run ESLint.
 lint:
   npm run lint
+
+# Format code with Prettier.
+format:
+  npm run format:write
