@@ -10,7 +10,7 @@
     "lint": "node --check src/index.js"
   },
   "dependencies": {
-    "@actions/core": "^3.0.0",
+    "@actions/core": "^3.0.1",
     "@actions/http-client": "^4.0.1"
   },
   "devDependencies": {
