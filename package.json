@@ -1,6 +1,6 @@
 {
   "name": "kuberollouttrigger-action",
-  "version": "0.1.1",
+  "version": "0.4.1",
   "private": true,
   "description": "GitHub Action for triggering rollout webhook with OIDC",
   "main": "dist/index.js",
